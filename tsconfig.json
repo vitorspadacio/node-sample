@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+		"baseUrl": "src",
+		"outDir": "dist",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es2021",
+		"paths": {
+      "*": [
+        "node_modules/*"
+      ],
+      "~/*": [
+        "*"
+      ]
+    },
+  },
+}

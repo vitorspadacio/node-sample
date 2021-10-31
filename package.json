@@ -1,0 +1,37 @@
+{
+  "name": "node-sample",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/vitorspadacio/node-sample.git",
+  "author": "Vitor Spadacio Pisani <vsp193@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon --ignore '*.test.ts' --watch src -e ts --exec ts-node -r tsconfig-paths/register src/server.ts",
+    "test": "jest --no-cache --watch"
+  },
+  "devDependencies": {
+    "@types/faker": "^5.5.9",
+    "@types/jest": "^27.0.2",
+    "@types/koa": "^2.13.4",
+    "@types/koa-bodyparser": "^4.3.3",
+    "@types/koa__router": "^8.0.8",
+    "@types/supertest": "^2.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.2.0",
+    "@typescript-eslint/parser": "^5.2.0",
+    "eslint": "^8.1.0",
+    "eslint-plugin-import": "^2.25.2",
+    "jest": "^27.3.1",
+    "nodemon": "^2.0.14",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^10.4.0",
+    "tsconfig-paths": "^3.11.0",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "@koa/router": "^10.1.1",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "supertest": "^6.1.6"
+  }
+}
