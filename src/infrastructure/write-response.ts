@@ -24,4 +24,11 @@ export const writeResponse = <T extends keyof typeof HttpStatusCode>
 
 export const createContent = (data: unknown): Response => ({data})
 
-export const createError = (messages: string[]): Response => ({messages})
+export const createError = (...message: string[]): Response => ({messages: [...message]})
+
+// Aliases
+export const writeBadRequest = (ctx: Context, ...message: string[]) =>
+  writeResponse(ctx, 'BadRequest', createError(...message))
+
+export const writeInternalServerError = (ctx: Context, ...message: string[]) =>
+  writeResponse(ctx, 'InternalServerError', createError(...message))

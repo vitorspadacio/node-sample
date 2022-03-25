@@ -10,8 +10,8 @@ module.exports = {
   ],
   coverageProvider: 'v8',
   errorOnDeprecated: true,
-  moduleNameMapper: {'~/(.*)': '<rootDir>/src/$1'},
+  moduleNameMapper: { '~/(.*)': '<rootDir>/src/$1' },
   roots: ['<rootDir>/src'],
-  testMatch: ['**/*.tests.ts'],
-  transform: {'.+\\.ts$': 'ts-jest'},
+  testMatch: ['**/*.test.ts'],
+  transform: { '.+\\.ts$': 'ts-jest' },
 }
