@@ -6,7 +6,7 @@
   "author": "Vitor Spadacio Pisani <vsp193@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon --ignore '*.test.ts' --watch src -e ts --exec ts-node -r tsconfig-paths/register src/server.ts",
+    "start": "nodemon --ignore '*.test.ts' --watch src -e ts --exec ts-node -r tsconfig-paths/register src/index.ts",
     "test": "jest --no-cache --watch"
   },
   "devDependencies": {
@@ -20,6 +20,7 @@
     "@typescript-eslint/parser": "^5.2.0",
     "eslint": "^8.1.0",
     "eslint-plugin-import": "^2.25.2",
+    "glob": "^7.2.0",
     "jest": "^27.3.1",
     "nodemon": "^2.0.14",
     "ts-jest": "^27.0.7",
@@ -30,12 +31,17 @@
   "dependencies": {
     "@koa/cors": "^3.1.0",
     "@koa/router": "^10.1.1",
+    "@types/yup": "^0.29.13",
     "dotenv": "^16.0.0",
     "knex": "^1.0.4",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
+    "koa-response2": "^1.0.4",
+    "koa2-swagger-ui": "^5.5.0",
     "mysql2": "^2.3.3",
     "supertest": "^6.1.6",
-    "winston": "^3.6.0"
+    "swagger-autogen": "^2.20.5",
+    "winston": "^3.6.0",
+    "yup": "^0.32.11"
   }
 }

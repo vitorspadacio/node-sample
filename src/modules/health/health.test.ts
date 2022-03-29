@@ -1,5 +1,5 @@
 import { request } from '~/infrastructure/test-server'
-import { createContent, HttpStatusCode } from '~/infrastructure/write-response'
+import { createContent, HttpStatusCode } from '~/infrastructure/create-content'
 
 const baseUrl = '/api/v1/health'
 

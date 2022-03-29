@@ -1,6 +1,6 @@
 import Router from '@koa/router'
-import healthRoutes from './modules/health/health.routes'
-import userRoutes from './modules/user/user.routes'
+import healthRoutes from './health/health.routes'
+import userRoutes from './user/user.routes'
 
 export default new Router({prefix: '/api/v1'})
   .use(healthRoutes)
