@@ -15,7 +15,7 @@ export default async (ctx: Context, next: Next) => {
   const elapsedTime = new Date().getTime() - startTime
   const status = ctx.status
   const logLevel = status < 400 ? 'info' : status < 500 ? 'warn' : 'error'
-  const message = `${ctx.method} ${ctx.url} ${ctx.status} ${elapsedTime}ms`
+  const message = `${ctx.method} ${ctx.status} ${ctx.url} ${elapsedTime}ms`
 
   Logger.log(logLevel, message)
 }

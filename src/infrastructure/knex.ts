@@ -9,6 +9,7 @@ export default knex({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
   }),
+  migrations: { tableName: 'migrations' },
   debug: Boolean(process.env.DB_DEBUG),
 })
 

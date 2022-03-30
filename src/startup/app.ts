@@ -9,9 +9,9 @@ import startSwaggerUi from './start-swagger-ui'
 const app = new Koa()
 
 export default app
+  .use(startApiLog)
   .use(bodyParser())
   .use(cors())
   .use(startResponse())
   .use(startSwaggerUi())
   .use(routes)
-  .use(startApiLog)

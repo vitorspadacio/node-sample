@@ -4,8 +4,11 @@ import repository from './user.repository'
 import { User } from './user.types'
 
 export default {
-  getAll: async (): Promise<ServiceResult<User[]>> => {
-    const users = await repository.getAll()
+  get: async (name?: string): Promise<ServiceResult<User[]>> => {
+    const users = await repository.get(name)
     return createSuccessServiceResult<User[]>(users)
+  },
+  insert: async (user: User): Promise<User> => {
+    return repository.insert(user)
   }
 }

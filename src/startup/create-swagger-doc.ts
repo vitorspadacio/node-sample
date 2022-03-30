@@ -10,9 +10,12 @@ const doc = {
     title: 'Node Sample',
     description: 'Um exemplo de backend completo em Node',
   },
+  basePath: '/api/v1'
 }
 
-export default async () => {
+export default async (host) => {
+  doc['host'] = host
+
   try {
     await routePaths
   } catch(ex) {
@@ -20,7 +23,7 @@ export default async () => {
   }
 
   try {
-    await swaggerAutogen()(swaggerJsonPath, routePaths, doc)
+    await swaggerAutogen({openapi: '3.0.0'})(swaggerJsonPath, routePaths, doc)
   } catch(ex) {
     Logger.info('Ocorreu erro ao gerar swagger.json', ex)
   }

@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-import Logger from '~/infrastructure/logger'
+import Logger from '../infrastructure/logger'
 
 export default async () => {
   if (process.env.NODE_ENV !== 'production') {
