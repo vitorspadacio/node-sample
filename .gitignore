@@ -1,3 +1,5 @@
-node_modules
-yarn-error.log
+.env
 coverage
+node_modules
+src/startup/swagger.json
+yarn-error.log

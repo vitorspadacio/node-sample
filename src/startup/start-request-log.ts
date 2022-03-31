@@ -24,4 +24,5 @@ export default async (ctx: Context, next: Next) => {
   const message = `${ctx.method} ${ctx.status} ${ctx.url} ${elapsedTime}ms`
 
   Logger.log(logLevel, message)
+  Logger.info('---------------------------')
 }
