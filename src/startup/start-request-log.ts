@@ -1,5 +1,11 @@
 import { Context, Next } from 'koa'
-import Logger from '~/infrastructure/logger'
+import Logger from '../infrastructure/logger'
+
+const getLogLevel = (status: number) => {
+  if (status < 400) return 'info'
+  if (status < 500) return 'warn'
+  return 'error'
+}
 
 export default async (ctx: Context, next: Next) => {
   const startTime = new Date().getTime()
@@ -13,8 +19,8 @@ export default async (ctx: Context, next: Next) => {
   }
 
   const elapsedTime = new Date().getTime() - startTime
-  const status = ctx.status
-  const logLevel = status < 400 ? 'info' : status < 500 ? 'warn' : 'error'
+  const { status } = ctx
+  const logLevel = getLogLevel(status)
   const message = `${ctx.method} ${ctx.status} ${ctx.url} ${elapsedTime}ms`
 
   Logger.log(logLevel, message)

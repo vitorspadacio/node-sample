@@ -12,4 +12,3 @@ export default knex({
   migrations: { tableName: 'migrations' },
   debug: Boolean(process.env.DB_DEBUG),
 })
-

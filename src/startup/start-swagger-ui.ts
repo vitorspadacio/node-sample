@@ -9,5 +9,5 @@ export default () => koaSwagger({
     jsonEditor: false,
     defaultModelRendering: 'schema',
     showRequestHeaders: false,
-  }
+  },
 })

@@ -1,8 +1,7 @@
-import Logger from '~/infrastructure/logger'
+import Logger from '../infrastructure/logger'
 import app from './app'
 import createSwaggerDoc from './create-swagger-doc'
 import loadEnv from './load-env'
-
 
 export default async () => {
   await loadEnv()
