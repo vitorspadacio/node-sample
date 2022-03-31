@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon --ignore '*.test.ts' --watch src -e ts --exec ts-node -r tsconfig-paths/register src/index.ts",
-    "test": "jest --no-cache --watch"
+    "test": "jest --watch",
+    "migrate:latest": "knex migrate:latest"
   },
   "devDependencies": {
     "@types/faker": "^5.5.9",

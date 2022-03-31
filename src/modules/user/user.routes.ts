@@ -4,13 +4,13 @@ import messages from '~/infrastructure/messages'
 import validateRequest from '~/infrastructure/validate-request'
 import service from './user.service'
 import { User } from './user.types'
-import { getUserSchema, postUserSchema } from './user.validation'
+import { postUserSchema } from './user.validation'
 
 const router = new Router({ prefix: '/user' })
 
-router.get('/', validateRequest(getUserSchema), async (ctx: Context) => {
-  const query = <{ name: string }>ctx.request.query
-  const { data } = await service.get(query.name)
+router.get('/', async (ctx: Context) => {
+  const { name } = <{ name: string }>ctx.request.query
+  const { data } = await service.get(name)
   ctx.oK(data, messages.noDataFound(data))
 })
 
