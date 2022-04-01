@@ -5,8 +5,8 @@ export default () => koaSwagger({
   swaggerOptions: {
     spec,
     supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
-    docExpansion: 'none',
-    jsonEditor: false,
+    docExpansion: 'list',
+    jsonEditor: true,
     defaultModelRendering: 'schema',
     showRequestHeaders: false,
   },

@@ -1,7 +1,7 @@
 import Logger from '../infrastructure/logger'
 import app from './app'
-import createSwaggerDoc from './create-swagger-doc'
 import loadEnv from './load-env'
+import swaggerDoc from './swagger-doc'
 
 export default async () => {
   await loadEnv()
@@ -9,7 +9,7 @@ export default async () => {
   const port = process.env.PORT || 1234
   const host = `localhost:${port}`
 
-  await createSwaggerDoc(host)
+  await swaggerDoc(host)
   app.listen(port)
 
   Logger.info('---------------------------')

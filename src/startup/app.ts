@@ -1,17 +1,17 @@
 import cors from '@koa/cors'
 import Koa from 'koa'
 import bodyParser from 'koa-bodyparser'
-import routes from '../modules/routes'
-import startApiLog from './start-request-log'
-import startResponse from './start-response'
-import startSwaggerUi from './start-swagger-ui'
+import requestLog from './request-log'
+import response from './response'
+import routes from './routes'
+import swaggerUi from './swagger-ui'
 
 const app = new Koa()
 
 export default app
-  .use(startApiLog)
-  .use(bodyParser())
   .use(cors())
-  .use(startResponse())
-  .use(startSwaggerUi())
-  .use(routes)
+  .use(bodyParser())
+  .use(requestLog())
+  .use(response())
+  .use(swaggerUi())
+  .use(routes())

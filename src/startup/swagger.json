@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:1234/api/v1"
+      "url": "http://localhost:3000/api/v1"
     }
   ],
   "paths": {
@@ -20,14 +20,51 @@
     },
     "/user/": {
       "get": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [],
         "responses": {}
       },
       "post": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "schema": {
+              "$ref": "#/components/schemas/postUserSchema"
+            }
+          }
+        ],
         "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "postUserSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9]*$"
+          },
+          "age": {
+            "type": "number",
+            "format": "float",
+            "maximum": 99
+          }
+        },
+        "required": [
+          "name",
+          "age"
+        ],
+        "additionalProperties": false
       }
     }
   }

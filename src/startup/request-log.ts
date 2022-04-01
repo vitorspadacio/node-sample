@@ -7,7 +7,7 @@ const getLogLevel = (status: number) => {
   return 'error'
 }
 
-export default async (ctx: Context, next: Next) => {
+export default () => async (ctx: Context, next: Next) => {
   const startTime = new Date().getTime()
 
   try {

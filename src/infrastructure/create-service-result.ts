@@ -1,4 +1,7 @@
-import { ServiceResult } from '../modules/types'
+export interface ServiceResult<T> {
+  errors?: string[],
+  data?: T,
+}
 
 const createServiceResult = <T>(errors?: string[], data?: T): ServiceResult<T> => ({
   errors,

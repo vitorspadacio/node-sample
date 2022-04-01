@@ -1,5 +1,4 @@
-import { createSuccessServiceResult } from '../../infrastructure/create-service-result'
-import { ServiceResult } from '../types'
+import { createSuccessServiceResult, ServiceResult } from '../../infrastructure/create-service-result'
 import repository from './user.repository'
 import { User } from './user.types'
 
