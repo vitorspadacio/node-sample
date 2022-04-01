@@ -4,10 +4,6 @@ import spec from './swagger.json'
 export default () => koaSwagger({
   swaggerOptions: {
     spec,
-    supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
     docExpansion: 'list',
-    jsonEditor: true,
-    defaultModelRendering: 'schema',
-    showRequestHeaders: false,
   },
 })

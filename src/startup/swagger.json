@@ -24,7 +24,15 @@
           "Users"
         ],
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "data",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/getUserSchema"
+            }
+          }
+        ],
         "responses": {}
       },
       "post": {
@@ -34,7 +42,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "User",
+            "name": "data",
             "in": "body",
             "schema": {
               "$ref": "#/components/schemas/postUserSchema"
@@ -47,6 +55,19 @@
   },
   "components": {
     "schemas": {
+      "getUserSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9]*$"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      },
       "postUserSchema": {
         "type": "object",
         "properties": {

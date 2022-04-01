@@ -5,7 +5,8 @@ import messages from './messages'
 
 export default <T>(
   schema: Joi.ObjectSchema<T>): koa.Middleware => async (ctx: Context, next: Next) => {
-  const payload = ctx.resquest?.query || ctx.request?.body
+  const payload = ctx.resquest?.query || ctx.request?.body || {}
+
   const result = schema.validate(payload, { abortEarly: false })
 
   if (result.error) {
