@@ -3,7 +3,7 @@ import loadEnv from './src/startup/load-env'
 
 loadEnv()
 
-const config: { [key: string]: Knex.Config } = {
+export const config: { [key: string]: Knex.Config } = {
   development: {
     client: 'mysql2',
     connection: () => ({
@@ -15,7 +15,5 @@ const config: { [key: string]: Knex.Config } = {
     }),
     migrations: { tableName: 'migrations' },
     debug: Boolean(process.env.DB_DEBUG),
-  }
+  },
 }
-
-module.exports = config

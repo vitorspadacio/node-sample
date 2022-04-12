@@ -2,7 +2,7 @@ import Joi from 'joi'
 import { User } from './user.types'
 
 export const getUserSchema = Joi.object<User>({
-  name: Joi.string().alphanum().required(),
+  name: Joi.string().alphanum().optional(),
 })
 
 export const postUserSchema = Joi.object<User>({
