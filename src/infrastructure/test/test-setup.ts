@@ -18,7 +18,7 @@ const setup = async () => {
 
 const teardown = async () => {
   const knexWithoutDb = knex(getConfig(true))
-  // await knexWithoutDb.raw(`drop database ${process.env.DB_NAME};`)
+  await knexWithoutDb.raw(`drop database ${process.env.DB_NAME};`)
   knexWithoutDb.destroy()
 }
 
