@@ -1,8 +1,8 @@
 import { StatusCodes } from 'http-status-codes'
-import messages from '~/infrastructure/messages'
 import userBuilder from '../../infrastructure/builders/user.builder'
 import createContent from '../../infrastructure/create-content'
 import { request } from '../../infrastructure/test/test-server'
+import userRepository from './user.repository'
 
 const baseUrl = '/api/v1/user'
 
@@ -13,7 +13,7 @@ describe('User', () => {
 
       const { statusCode, body } = await request.get(`${baseUrl}`)
 
-      expect(statusCode).toBe(StatusCodes.OK)
+      expect(statusCode).toBe(expected.code)
       expect(body).toStrictEqual(expected)
     })
 
@@ -23,7 +23,7 @@ describe('User', () => {
 
       const { statusCode, body } = await request.get(`${baseUrl}`)
 
-      expect(statusCode).toBe(StatusCodes.OK)
+      expect(statusCode).toBe(expected.code)
       expect(body).toStrictEqual(expected)
     })
 
@@ -35,7 +35,7 @@ describe('User', () => {
 
       const { statusCode, body } = await request.get(`${baseUrl}`)
 
-      expect(statusCode).toBe(StatusCodes.OK)
+      expect(statusCode).toBe(expected.code)
       expect(body).toStrictEqual(expected)
     })
 
@@ -49,7 +49,7 @@ describe('User', () => {
       const { statusCode, body } = await request.get(`${baseUrl}`)
         .query(payload)
 
-      expect(statusCode).toBe(StatusCodes.OK)
+      expect(statusCode).toBe(expected.code)
       expect(body).toStrictEqual(expected)
     })
 
@@ -64,7 +64,7 @@ describe('User', () => {
       const { statusCode, body } = await request.get(`${baseUrl}`)
         .query(payload)
 
-      expect(statusCode).toBe(StatusCodes.BAD_REQUEST)
+      expect(statusCode).toBe(expected.code)
       expect(body).toStrictEqual(expected)
     })
   })
@@ -81,7 +81,7 @@ describe('User', () => {
       const { statusCode, body } = await request.post(`${baseUrl}`)
         .send(user)
 
-      expect(statusCode).toBe(StatusCodes.CREATED)
+      expect(statusCode).toBe(expected.code)
       expect(body).toStrictEqual(expected)
     })
 
@@ -95,7 +95,46 @@ describe('User', () => {
       const { statusCode, body } = await request.post(`${baseUrl}`)
         .send({})
 
-      expect(statusCode).toBe(StatusCodes.BAD_REQUEST)
+      expect(statusCode).toBe(expected.code)
+      expect(body).toStrictEqual(expected)
+    })
+  })
+
+  describe('DELETE', () => {
+    test('deve retornar status Accepted quando user for deletado corretamente', async () => {
+      const { id } = await userBuilder().insert()
+      const expected = createContent(StatusCodes.ACCEPTED, {}, 'User successfully deleted')
+
+      const { statusCode, body } = await request.delete(`${baseUrl}`)
+        .query({ id })
+
+      expect(statusCode).toBe(expected.code)
+      expect(body).toStrictEqual(expected)
+
+      const user = await userRepository.getById(id || 0)
+      expect(user).toBeUndefined()
+    })
+
+    test('deve retornar status BadRequest quando não encontrar user com id fornecido', async () => {
+      const expected = createContent(StatusCodes.BAD_REQUEST, {}, 'Entity not found with id 1')
+
+      const { statusCode, body } = await request.delete(`${baseUrl}`)
+        .query({ id: 1 })
+
+      expect(statusCode).toBe(expected.code)
+      expect(body).toStrictEqual(expected)
+    })
+
+    test('deve retornar status BadRequest quando não fornecer id do user', async () => {
+      const expected = createContent(
+        StatusCodes.BAD_REQUEST,
+        ['"id" is required'],
+        'Request data is invalid',
+      )
+
+      const { statusCode, body } = await request.delete(`${baseUrl}`)
+
+      expect(statusCode).toBe(expected.code)
       expect(body).toStrictEqual(expected)
     })
   })

@@ -37,7 +37,7 @@ router.delete('/', validateRequest(deleteUserSchema), async (ctx: Context) => {
   const { errors } = await service.delete(Number(id))
 
   if (errors) {
-    ctx.badRequest(...errors)
+    ctx.badRequest({}, ...errors)
     return
   }
 
