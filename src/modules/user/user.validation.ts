@@ -9,3 +9,7 @@ export const postUserSchema = Joi.object<User>({
   name: Joi.string().alphanum().required(),
   age: Joi.number().max(99).required(),
 })
+
+export const deleteUserSchema = Joi.object<User>({
+  id: Joi.number().required(),
+})

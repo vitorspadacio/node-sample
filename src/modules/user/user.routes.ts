@@ -4,7 +4,7 @@ import messages from '../../infrastructure/messages'
 import validateRequest from '../../infrastructure/validate-request'
 import service from './user.service'
 import { User } from './user.types'
-import { getUserSchema, postUserSchema } from './user.validation'
+import { deleteUserSchema, getUserSchema, postUserSchema } from './user.validation'
 
 const router = new Router({ prefix: '/user' })
 
@@ -24,8 +24,24 @@ router.post('/', validateRequest(postUserSchema), async (ctx: Context) => {
     #swagger.parameters['data'] = { in: 'body', schema: { $ref: '#definitions/postUserSchema' } }
   */
   const payload = <User>ctx.request.body
-  const response = await service.insert(payload)
-  ctx.created(response, messages.successfullyCreated('User'))
+  const { data } = await service.insert(payload)
+  ctx.created(data, messages.successfullyCreated('User'))
+})
+
+router.delete('/', validateRequest(deleteUserSchema), async (ctx: Context) => {
+  /*
+    #swagger.tags = ['Users']
+    #swagger.parameters['data'] = { in: 'query', schema: { $ref: '#definitions/deleteUserSchema' } }
+  */
+  const { id } = <{ id: string }>ctx.request.query
+  const { errors } = await service.delete(Number(id))
+
+  if (errors) {
+    ctx.badRequest(...errors)
+    return
+  }
+
+  ctx.accepted({}, messages.successfullyDeleted('User'))
 })
 
 export default router.routes()
