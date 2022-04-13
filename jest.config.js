@@ -5,8 +5,10 @@ module.exports = {
   collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: [
-    '<rootDir>/src/server.ts',
+    '<rootDir>/src/index.ts',
     '<rootDir>/src/infrastructure/test-server.ts',
+    '<rootDir>/src/infrastructure/builders/*',
+    '<rootDir>/src/startup/*',
   ],
   coverageProvider: 'v8',
   errorOnDeprecated: true,

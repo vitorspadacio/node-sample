@@ -18,6 +18,10 @@ export default () => ({
     return this
   },
 
+  create() {
+    return this.user
+  },
+
   async insert() {
     const [id] = await database<User>('users').insert(this.user)
     this.user.id = id

@@ -8,6 +8,7 @@
   "scripts": {
     "start": "nodemon --ignore '*.test.ts' --watch src -e ts --exec ts-node -r tsconfig-paths/register src/index.ts",
     "test": "jest --watch",
+    "test:all": "jest --detectOpenHandles",
     "migrate:latest": "knex migrate:latest"
   },
   "devDependencies": {
