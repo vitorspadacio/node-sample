@@ -4,7 +4,9 @@ import messages from '../../infrastructure/messages'
 import validateRequest from '../../infrastructure/validate-request'
 import service from './user.service'
 import { User } from './user.types'
-import { deleteUserSchema, getUserSchema, postUserSchema } from './user.validation'
+import {
+  deleteUserSchema, getUserSchema, postUserSchema, putUserSchema,
+} from './user.validation'
 
 const router = new Router({ prefix: '/user' })
 
@@ -42,6 +44,22 @@ router.delete('/', validateRequest(deleteUserSchema), async (ctx: Context) => {
   }
 
   ctx.accepted({}, messages.successfullyDeleted('User'))
+})
+
+router.put('/', validateRequest(putUserSchema), async (ctx: Context) => {
+  /*
+    #swagger.tags = ['Users']
+    #swagger.parameters['data'] = { in: 'query', schema: { $ref: '#definitions/putUserSchema' } }
+  */
+  const user = <User>ctx.request.body
+  const { errors, data } = await service.update(user)
+
+  if (errors) {
+    ctx.badRequest({}, ...errors)
+    return
+  }
+
+  ctx.accepted(data, messages.successfullyUpdated('User'))
 })
 
 export default router.routes()

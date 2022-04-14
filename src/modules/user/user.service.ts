@@ -21,4 +21,10 @@ export default {
     await repository.delete(id)
     return createSuccessServiceResult<number>(id)
   },
+
+  update: async (user: User): Promise<ServiceResult<User>> => {
+    const updatedUser = await repository.update(user)
+    if (!updatedUser) return createErrorServiceResult(messages.notFindById(Number(user.id)))
+    return createSuccessServiceResult<User>(updatedUser)
+  },
 }

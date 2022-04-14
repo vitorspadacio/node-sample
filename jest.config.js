@@ -6,8 +6,8 @@ module.exports = {
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: [
     '<rootDir>/src/index.ts',
-    '<rootDir>/src/infrastructure/test-server.ts',
     '<rootDir>/src/infrastructure/builders/*',
+    '<rootDir>/src/infrastructure/test-server.ts',
     '<rootDir>/src/startup/*',
   ],
   coverageProvider: 'v8',

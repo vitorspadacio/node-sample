@@ -111,7 +111,7 @@ describe('User', () => {
       expect(statusCode).toBe(expected.code)
       expect(body).toStrictEqual(expected)
 
-      const user = await userRepository.getById(id || 0)
+      const user = await userRepository.getById(Number(id))
       expect(user).toBeUndefined()
     })
 
@@ -133,6 +133,49 @@ describe('User', () => {
       )
 
       const { statusCode, body } = await request.delete(`${baseUrl}`)
+
+      expect(statusCode).toBe(expected.code)
+      expect(body).toStrictEqual(expected)
+    })
+  })
+
+  describe('PUT', () => {
+    test('deve retornar status Accepted quando user for atualizado corretamente', async () => {
+      const user = await userBuilder().insert()
+      const userToUpdate = { ...user, name: 'Foo' }
+      const expected = createContent(StatusCodes.ACCEPTED, userToUpdate, 'User successfully updated')
+
+      const { statusCode, body } = await request.put(`${baseUrl}`)
+        .send(userToUpdate)
+
+      expect(statusCode).toBe(expected.code)
+      expect(body).toStrictEqual(expected)
+
+      const updatedUser = await userRepository.getById(Number(user.id))
+      expect(updatedUser?.name).toBe('Foo')
+    })
+
+    test('deve retornar status BadRequest quando não encontrar user com id fornecido', async () => {
+      const user = await userBuilder().insert()
+      const userToUpdate = { ...user, id: 3 }
+      const expected = createContent(StatusCodes.BAD_REQUEST, {}, 'Entity not found with id 3')
+
+      const { statusCode, body } = await request.put(`${baseUrl}`)
+        .send(userToUpdate)
+
+      expect(statusCode).toBe(expected.code)
+      expect(body).toStrictEqual(expected)
+    })
+
+    test('deve retornar status BadRequest quando ernviar dado errado', async () => {
+      const expected = createContent(
+        StatusCodes.BAD_REQUEST,
+        ['"id" is required', '"name" is required', '"age" is required'],
+        'Request data is invalid',
+      )
+
+      const { statusCode, body } = await request.put(`${baseUrl}`)
+        .send({})
 
       expect(statusCode).toBe(expected.code)
       expect(body).toStrictEqual(expected)

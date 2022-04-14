@@ -19,4 +19,9 @@ export default {
   },
 
   delete: async (id: number) => database<User>(table).where('id', id).delete(),
+
+  update: async (user: User) => {
+    const id = await database<User>(table).where('id', user.id).update(user)
+    return id ? { ...user } : false
+  },
 }
