@@ -17,7 +17,7 @@ module.exports = {
   rules: {
     'import/extensions': [0],
     'import/prefer-default-export': [0],
-    'max-len': ['error', { code: 100, ignoreStrings: true }],
+    'max-len': ['error', { code: 110, ignoreStrings: true }],
     'no-console': ['error', { allow: ['info'] }],
     quotes: ['error', 'single'],
     semi: ['error', 'never'],

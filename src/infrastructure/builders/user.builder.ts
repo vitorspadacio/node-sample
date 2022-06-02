@@ -18,11 +18,11 @@ export default () => ({
     return this
   },
 
-  create() {
+  create(): User {
     return this.user
   },
 
-  async insert() {
+  async insert(): Promise<User> {
     const [id] = await database<User>('users').insert(this.user)
     this.user.id = id
     return this.user

@@ -5,7 +5,7 @@ import validateRequest from '../../infrastructure/validate-request'
 import service from './user.service'
 import { User } from './user.types'
 import {
-  deleteUserSchema, getUserSchema, postUserSchema, putUserSchema,
+  deleteUserSchema, getByIdUserSchema, getUserSchema, postUserSchema, putUserSchema,
 } from './user.validation'
 
 const router = new Router({ prefix: '/user' })
@@ -17,7 +17,17 @@ router.get('/', validateRequest(getUserSchema), async (ctx: Context) => {
   */
   const { name } = <{ name: string }>ctx.request.query
   const { data } = await service.get(name)
-  ctx.oK(data, messages.noDataFound(data))
+  ctx.oK(data, messages.listHasNoDataFound(data))
+})
+
+router.get('/by-id', validateRequest(getByIdUserSchema), async (ctx: Context) => {
+  /*
+    #swagger.tags = ['Users']
+    #swagger.parameters['data'] = { in: 'query', schema: { $ref: '#definitions/getByIdUserSchema' } }
+  */
+  const { id } = <{ id: string }>ctx.request.query
+  const { data } = await service.getById(Number(id))
+  ctx.oK(data, data ? '' : messages.noDataFound)
 })
 
 router.post('/', validateRequest(postUserSchema), async (ctx: Context) => {

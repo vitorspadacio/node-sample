@@ -1,5 +1,5 @@
-import messages from '../../infrastructure/messages'
 import { createErrorServiceResult, createSuccessServiceResult, ServiceResult } from '../../infrastructure/create-service-result'
+import messages from '../../infrastructure/messages'
 import repository from './user.repository'
 import { User } from './user.types'
 
@@ -7,6 +7,13 @@ export default {
   get: async (name?: string): Promise<ServiceResult<User[]>> => {
     const users = await repository.get(name)
     return createSuccessServiceResult<User[]>(users)
+  },
+
+  getById: async (id: number): Promise<ServiceResult<User>> => {
+    const user = await repository.getById(id)
+
+    if (!user) return createErrorServiceResult(messages.notFindById(id))
+    return createSuccessServiceResult<User>(user)
   },
 
   insert: async (user: User): Promise<ServiceResult<User>> => {
