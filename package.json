@@ -7,8 +7,9 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon --ignore '*.test.ts' --watch src -e ts --exec ts-node -r tsconfig-paths/register src/index.ts",
-    "test": "jest --watch",
-    "test:all": "jest --detectOpenHandles",
+    "test": "jest --ci --reporters=jest-junit --reporters=default --coverage --coverageReporters=cobertura --coverageReporters=lcov",
+    "test:watch": "jest --watch",
+    "init:swagger": "ts-node src/startup/create-swagger-json.ts",
     "migrate:latest": "knex migrate:latest"
   },
   "devDependencies": {
@@ -23,6 +24,7 @@
     "eslint": "^8.1.0",
     "eslint-plugin-import": "^2.25.2",
     "jest": "^27.3.1",
+    "jest-junit": "^13.2.0",
     "nodemon": "^2.0.14",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.4.0",

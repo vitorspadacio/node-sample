@@ -17,3 +17,5 @@ export const config: { [key: string]: Knex.Config } = {
     debug: Boolean(process.env.DB_DEBUG),
   },
 }
+
+module.exports = config
