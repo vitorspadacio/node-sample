@@ -9,4 +9,5 @@ export default {
   invalidRequest: 'Request data is invalid',
   noDataFound: 'No data found',
   unknownError: 'An unknown error ocurred',
+  empty: '',
 }
