@@ -3,7 +3,11 @@ import koa, { Context, Next } from 'koa'
 import Logger from './logger'
 import messages from './messages'
 
-const getPayload = ({ query, body }: koa.Request) => {
+interface Request extends koa.Request {
+  body: string,
+}
+
+const getPayload = ({ query, body }: Request) => {
   if (Object.keys(query).length) return query
   if (Object.keys(body).length) return body
   return {}
@@ -11,7 +15,7 @@ const getPayload = ({ query, body }: koa.Request) => {
 
 export default <T>(
   schema: Joi.ObjectSchema<T>): koa.Middleware => async (ctx: Context, next: Next) => {
-  const payload = getPayload(ctx.request)
+  const payload = getPayload(ctx.request as Request)
 
   const result = schema.validate(payload, { abortEarly: false })
 

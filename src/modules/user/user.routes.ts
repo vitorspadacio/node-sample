@@ -35,7 +35,7 @@ router.post('/', validateRequest(postUserSchema), async (ctx: Context) => {
     #swagger.tags = ['Users']
     #swagger.parameters['data'] = { in: 'body', schema: { $ref: '#definitions/postUserSchema' } }
   */
-  const payload = <User>ctx.request.body
+  const payload = <User>(ctx.request as any).body
   const { data } = await service.insert(payload)
   ctx.created(data, messages.successfullyCreated('User'))
 })
@@ -61,7 +61,7 @@ router.put('/', validateRequest(putUserSchema), async (ctx: Context) => {
     #swagger.tags = ['Users']
     #swagger.parameters['data'] = { in: 'query', schema: { $ref: '#definitions/putUserSchema' } }
   */
-  const user = <User>ctx.request.body
+  const user = <User>(ctx.request as any).body
   const { errors, data } = await service.update(user)
 
   if (errors) {

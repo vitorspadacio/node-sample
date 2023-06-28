@@ -7,11 +7,12 @@ import routes from './routes'
 import swaggerUi from './swagger-ui'
 
 const app = new Koa()
-
-export default app
   .use(cors())
   .use(bodyParser())
   .use(requestLog())
   .use(response())
-  .use(swaggerUi())
   .use(routes())
+
+if (process.env.NODE_ENV !== 'test') { app.use(swaggerUi()) }
+
+export default app

@@ -7,5 +7,6 @@ export default {
   successfullyUpdated: (entityName: string) => `${entityName} successfully updated`,
   notFindById: (id: number) => `Entity not found with id ${id}`,
   invalidRequest: 'Request data is invalid',
-  noDataFound,
+  noDataFound: 'No data found',
+  unknownError: 'An unknown error ocurred',
 }

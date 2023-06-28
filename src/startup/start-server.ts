@@ -1,9 +1,9 @@
-import Logger from '../infrastructure/logger'
 import app from './app'
 import loadEnv from './load-env'
+import logger from '../infrastructure/logger'
 import swaggerDoc from './swagger-doc'
 
-export default async () => {
+async function startServer(): Promise<void> {
   await loadEnv()
 
   const port = process.env.PORT || 1234
@@ -12,10 +12,12 @@ export default async () => {
   await swaggerDoc(host)
   app.listen(port)
 
-  Logger.info('---------------------------')
-  Logger.info('Server has started!  🚀')
-  Logger.info('---------------------------')
-  Logger.info(`Listening port: http://${host}/`)
-  Logger.info(`Documentation: http://${host}/docs`)
-  Logger.info('---------------------------')
+  logger.info('---------------------------')
+  logger.info('Server has started!  🚀')
+  logger.info('---------------------------')
+  logger.info(`Listening port: http://${host}/`)
+  logger.info(`Documentation: http://${host}/docs`)
+  logger.info('---------------------------')
 }
+
+export default startServer

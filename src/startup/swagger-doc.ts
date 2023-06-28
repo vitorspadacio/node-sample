@@ -1,11 +1,11 @@
-import glob from 'glob'
+import { globSync } from 'glob'
 import j2s from 'joi-to-swagger'
 import swaggerAutogen from 'swagger-autogen'
 import Logger from '../infrastructure/logger'
 
 const swaggerJsonPath = 'src/startup/swagger.json'
-const routePaths = glob.sync('**/*.routes.ts')
-const validationPaths = glob.sync('**/*.validation.ts')
+const routePaths = globSync('**/*.routes.ts')
+const validationPaths = globSync('**/*.validation.ts')
 
 const getSchemas = async () => {
   const paths = await validationPaths
