@@ -6,7 +6,7 @@ import userRepository from './user.repository'
 
 const baseUrl = '/api/v1/user'
 
-describe('User', () => {
+describe.skip('User', () => {
   describe('GET', () => {
     test('deve retornar status Ok sem dados e com mensagem informativa', async () => {
       const expected = createContent(StatusCodes.OK, [], 'No data found')

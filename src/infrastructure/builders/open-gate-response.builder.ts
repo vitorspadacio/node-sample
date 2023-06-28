@@ -4,13 +4,13 @@ export default () => ({
   openGateResponse: {
     results: [{
       components: {
-        city: faker.address.city(),
-        state_code: faker.address.stateAbbr(),
-        country: faker.address.country(),
+        city: faker.location.city(),
+        state_code: faker.location.state(),
+        country: faker.location.country(),
       },
       geometry: {
-        lat: faker.datatype.number(),
-        lng: faker.datatype.number(),
+        lat: faker.number.int(),
+        lng: faker.number.int(),
       },
     }],
   },

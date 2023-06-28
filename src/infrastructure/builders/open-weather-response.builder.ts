@@ -2,18 +2,18 @@ import { faker } from '@faker-js/faker'
 
 function createWeather() {
   return {
-    dt: faker.datatype.number(),
+    dt: faker.number.int(),
     weather: [
-      { main: faker.word.noun(), icon: faker.random.alphaNumeric(3) },
+      { main: faker.word.noun(), icon: faker.number.hex() },
     ],
     main: {
-      temp: faker.datatype.number(2),
-      humidity: faker.datatype.number(),
-      pressure: faker.datatype.number(),
+      temp: faker.number.int(2),
+      humidity: faker.number.int(),
+      pressure: faker.number.int(),
     },
     wind: {
-      speed: faker.datatype.number(),
-      deg: faker.datatype.number(360),
+      speed: faker.number.int(),
+      deg: faker.number.int(360),
     },
   }
 }
