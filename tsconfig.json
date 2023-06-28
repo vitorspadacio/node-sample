@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "node16",
+    "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": false,
     "skipLibCheck": true,
